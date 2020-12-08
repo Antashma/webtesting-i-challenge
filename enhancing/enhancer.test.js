@@ -62,6 +62,18 @@ describe('enhancer - sucess', () => {
         };
         expect(enhancer.success(testItem)).toStrictEqual(expectedItem);
     })
+});
 
-
+describe('enhance - fail', () => {
+    it('decreases item durability by 5 when enhancement is <15', () => {
+        const testItem = {
+            name: 'lucky amulet',
+            enhancement: 13,
+            durability: 6,
+        }
+        expect(enhancer.fail({...testItem})).toStrictEqual({
+            ...testItem,
+            durability: testItem.durability - 5
+        });
+    })
 })
