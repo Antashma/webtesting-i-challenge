@@ -21,7 +21,7 @@ describe('enhance item - repair', () => {
 describe('enhancer - sucess', () => {
 
     it ('returns enhanced item', () => {
-        const testItem1 = {
+        const testItem = {
             name: 'test sword',
             enhancement: 0,
             durability:0,
@@ -31,12 +31,12 @@ describe('enhancer - sucess', () => {
             enhancement: 1,
             durability:0,
         } ;       
-        expect(enhancer.success(testItem1)).toStrictEqual(expectedItem);
+        expect(enhancer.success(testItem)).toStrictEqual(expectedItem);
         
     })
 
     it ('doesnt enhance item over 20', () => {
-        const testItem2 = {
+        const testItem = {
             name: 'test sword',
             enhancement: 20,
             durability:0,
@@ -46,7 +46,22 @@ describe('enhancer - sucess', () => {
             enhancement: 20,
             durability:0,
         };       
-        expect(enhancer.success(testItem2)).toStrictEqual(expectedItem);
+        expect(enhancer.success(testItem)).toStrictEqual(expectedItem);
+    });
 
+    it ('does not change durability', () => {
+        const testItem = {
+            name: 'test sword',
+            enhancement: 10,
+            durability:10,
+        };
+        const expectedItem = {
+            name: 'test sword',
+            enhancement: 11,
+            durability:10,
+        };
+        expect(enhancer.success(testItem)).toStrictEqual(expectedItem);
     })
+
+
 })
